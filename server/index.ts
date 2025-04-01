@@ -15,6 +15,17 @@ app.use(express.urlencoded({ extended: false }));
 // Serve static files from server/static directory
 app.use('/images', express.static(path.resolve(__dirname, 'static/images')));
 
+// Enable CORS for Vercel deployment
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -45,27 +56,18 @@ app.use((req, res, next) => {
   next();
 });
 
-(async () => {
-  const server = await registerRoutes(app);
+// Initialize routes
+await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  res.status(status).json({ message });
+});
 
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
-  }
-
-  // Use port 3000 for development to avoid conflicts
+// Setup Vite only in development
+if (process.env.NODE_ENV === "development") {
+  const server = await setupVite(app);
   const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
   server.listen({
     port,
@@ -74,4 +76,9 @@ app.use((req, res, next) => {
   }, () => {
     log(`serving on port ${port}`);
   });
-})();
+} else {
+  serveStatic(app);
+}
+
+// Export the Express app for Vercel
+export default app;
