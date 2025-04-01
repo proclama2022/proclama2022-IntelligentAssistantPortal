@@ -8,6 +8,7 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Create express application
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
+// Logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -56,40 +58,59 @@ app.use((req, res, next) => {
   next();
 });
 
-// Initialize routes
-await registerRoutes(app);
+// Initialize routes - avoid top-level await
+registerRoutes(app).catch(err => {
+  console.error("Failed to register routes:", err);
+});
 
+// Error handling middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  console.error("Server error:", err);
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
   res.status(status).json({ message });
 });
 
-// For Vercel deployment, we need to handle static files in a slightly different way
-if (process.env.VERCEL) {
-  log("Running on Vercel");
-  // Let Vercel handle static files via vercel.json configuration
-} else if (process.env.NODE_ENV === "development") {
-  const server = app.listen({
-    port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-    log(`Development server running on port ${port}`);
+// Handle server setup based on environment
+// This section avoids top-level await which causes issues on Vercel
+const setupServer = async () => {
+  try {
+    if (process.env.VERCEL) {
+      log("Running on Vercel environment");
+      // Vercel handles the server instantiation for us
+      // Let Vercel handle static files via vercel.json configuration
+    } else if (process.env.NODE_ENV === "development") {
+      const server = app.listen({
+        port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
+        host: "0.0.0.0",
+        reusePort: true,
+      }, () => {
+        const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+        log(`Development server running on port ${port}`);
+      });
+      
+      // Pass both app and server to setupVite
+      await setupVite(app, server);
+    } else {
+      // In production (non-Vercel), serve static files and handle client-side routing
+      const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+      const server = app.listen(port, "0.0.0.0", () => {
+        log(`Production server running on port ${port}`);
+      });
+      
+      // Serve static files
+      serveStatic(app);
+    }
+  } catch (error) {
+    console.error("Server setup error:", error);
+  }
+};
+
+// Run server setup if not in Vercel environment
+if (!process.env.VERCEL) {
+  setupServer().catch(error => {
+    console.error("Failed to start server:", error);
   });
-  
-  // Pass both app and server to setupVite
-  await setupVite(app, server);
-} else {
-  // In production (non-Vercel), serve static files and handle client-side routing
-  const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-  const server = app.listen(port, "0.0.0.0", () => {
-    log(`Production server running on port ${port}`);
-  });
-  
-  // Serve static files
-  serveStatic(app);
 }
 
 // Export the Express app for Vercel
