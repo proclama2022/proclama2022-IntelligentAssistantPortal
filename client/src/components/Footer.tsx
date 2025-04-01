@@ -20,14 +20,8 @@ export default function Footer() {
           
           <div>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-accent transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/rosarioemmi/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors" aria-label="LinkedIn">
                 <i className="fab fa-linkedin text-xl"></i>
-              </a>
-              <a href="#" className="hover:text-accent transition-colors" aria-label="Facebook">
-                <i className="fab fa-facebook-square text-xl"></i>
-              </a>
-              <a href="#" className="hover:text-accent transition-colors" aria-label="Twitter">
-                <i className="fab fa-twitter text-xl"></i>
               </a>
             </div>
           </div>

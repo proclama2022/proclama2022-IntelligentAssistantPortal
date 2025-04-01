@@ -6,6 +6,7 @@ import BiographySection from "@/components/BiographySection";
 import HobbySection from "@/components/HobbySection";
 import FormSection from "@/components/FormSection";
 import PartitaIvaSection from "@/components/PartitaIvaSection";
+import ChatbotSection from "@/components/ChatbotSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -45,6 +46,7 @@ export default function Home() {
         <HobbySection />
         <FormSection />
         <PartitaIvaSection />
+        <ChatbotSection />
       </main>
       <Footer />
     </div>
