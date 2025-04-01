@@ -77,7 +77,14 @@ if (process.env.NODE_ENV === "development") {
     log(`serving on port ${port}`);
   });
 } else {
+  // In production, serve static files and handle client-side routing
   serveStatic(app);
+  
+  // Start the server in production
+  const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+  app.listen(port, "0.0.0.0", () => {
+    log(`Production server running on port ${port}`);
+  });
 }
 
 // Export the Express app for Vercel

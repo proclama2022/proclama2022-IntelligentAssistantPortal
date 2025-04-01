@@ -6,7 +6,7 @@
       "use": "@vercel/node"
     },
     {
-      "src": "client/dist/**",
+      "src": "public/**",
       "use": "@vercel/static"
     }
   ],
@@ -16,8 +16,17 @@
       "dest": "server/index.ts"
     },
     {
+      "src": "/images/(.*)",
+      "dest": "server/static/images/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "client/dist/$1"
+      "dest": "public/$1",
+      "continue": true
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server/index.ts"
     }
   ]
 }
