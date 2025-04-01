@@ -23,10 +23,8 @@ export default function FormSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [generatedDocuments, setGeneratedDocuments] = useState<{
     contract: string;
-    invoice: string;
   } | null>(null);
   const contractRef = useRef<HTMLDivElement>(null);
-  const invoiceRef = useRef<HTMLDivElement>(null);
   
   const [refForm, inViewForm] = useInView({
     triggerOnce: true,
@@ -165,7 +163,7 @@ export default function FormSection() {
                 Il Tuo Contratto Generato Con AI in 90 Minuti
               </h2>
               <p className="text-foreground max-w-lg mx-auto">
-                Dimostra ai tuoi clienti il potere dell'IA compilando il form e ricevendo contratto e fattura personalizzati
+                Dimostra ai tuoi clienti il potere dell'IA compilando il form e ricevendo un contratto personalizzato generato con AI
               </p>
             </motion.div>
             
@@ -177,8 +175,8 @@ export default function FormSection() {
                 className="bg-gradient-to-r from-primary to-primary/90 text-white p-6 relative"
                 variants={formHeaderVariants}
               >
-                <h3 className="text-xl md:text-2xl font-bold font-montserrat mb-2">Genera i tuoi documenti professionali</h3>
-                <p className="text-white text-opacity-90">Compila i campi per creare automaticamente contratto e fattura di cortesia</p>
+                <h3 className="text-xl md:text-2xl font-bold font-montserrat mb-2">Genera il tuo contratto professionale</h3>
+                <p className="text-white text-opacity-90">Compila i campi per creare automaticamente un contratto personalizzato con AI</p>
                 
                 {/* Added badge */}
                 <div className="absolute -right-12 top-8 rotate-45 bg-accent text-white text-xs font-bold px-10 py-1 shadow-lg z-10">
@@ -364,7 +362,7 @@ export default function FormSection() {
                           Elaborazione con AI...
                         </>
                       ) : (
-                        "GENERA DOCUMENTI CON AI"
+                        "GENERA CONTRATTO CON AI"
                       )}
                     </Button>
                   </motion.div>
@@ -406,8 +404,8 @@ export default function FormSection() {
                 </div>
               </motion.div>
               
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">Documenti Generati con AI</h2>
-              <p className="text-gray-600 mb-4">I tuoi documenti sono stati generati con successo in pochi secondi grazie all'intelligenza artificiale!</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">Contratto Generato con AI</h2>
+              <p className="text-gray-600 mb-4">Il tuo contratto è stato generato con successo in pochi secondi grazie all'intelligenza artificiale!</p>
               
               <div className="flex justify-center space-x-4 mb-8">
                 <Button 
@@ -419,13 +417,13 @@ export default function FormSection() {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="max-w-3xl mx-auto">
               {/* Contratto */}
               <motion.div 
                 ref={contractRef}
                 className="bg-white rounded-xl shadow-lg overflow-hidden"
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
               >
                 <div className="bg-primary text-white p-4">
@@ -441,30 +439,6 @@ export default function FormSection() {
                 </div>
                 <div className="p-4 max-h-96 overflow-y-auto font-mono text-sm whitespace-pre-wrap bg-gray-50">
                   {generatedDocuments.contract}
-                </div>
-              </motion.div>
-              
-              {/* Fattura */}
-              <motion.div 
-                ref={invoiceRef}
-                className="bg-white rounded-xl shadow-lg overflow-hidden"
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <div className="bg-accent text-white p-4">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-xl font-bold">Fattura di Cortesia</h3>
-                    <Button 
-                      onClick={() => downloadAsTextFile(generatedDocuments.invoice, "fattura_ai.txt")}
-                      className="bg-white text-accent hover:bg-accent-50 text-sm px-3 py-1"
-                    >
-                      Scarica
-                    </Button>
-                  </div>
-                </div>
-                <div className="p-4 max-h-96 overflow-y-auto font-mono text-sm whitespace-pre-wrap bg-gray-50">
-                  {generatedDocuments.invoice}
                 </div>
               </motion.div>
             </div>

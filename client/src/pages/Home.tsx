@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import TimelineSection from "@/components/TimelineSection";
+import BiographySection from "@/components/BiographySection";
 import FormSection from "@/components/FormSection";
 import Footer from "@/components/Footer";
 
@@ -38,6 +39,7 @@ export default function Home() {
       <main className="flex-1">
         <HeroSection />
         <TimelineSection />
+        <BiographySection />
         <FormSection />
       </main>
       <Footer />

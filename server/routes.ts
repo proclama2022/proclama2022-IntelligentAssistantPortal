@@ -166,22 +166,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Generazione dei documenti con AI
+      // Generazione del contratto con AI
       const contract = generateAIContract(req.body);
-      const invoice = generateCourtesyInvoice(req.body);
       
       // Save document data
       const document = await storage.createDocument(result.data);
       
-      // In una implementazione reale, invieremmo questi documenti via email
+      // In una implementazione reale, invieremmo questo documento via email
       // o offriremmo un link per il download
       
       res.status(200).json({ 
-        message: "Documenti generati con successo con AI",
+        message: "Contratto generato con successo con AI",
         documentId: document.id,
         documents: {
-          contract,
-          invoice
+          contract
         }
       });
     } catch (error) {
