@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,10 +21,7 @@ import { FormSchema } from "@/lib/types";
 export default function FormSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [generatedDocuments, setGeneratedDocuments] = useState<{
-    contract: string;
-  } | null>(null);
-  const contractRef = useRef<HTMLDivElement>(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   
   const [refForm, inViewForm] = useInView({
     triggerOnce: true,
@@ -62,7 +59,7 @@ export default function FormSection() {
         throw new Error('Errore nell\'invio dei dati al webhook');
       }
       
-      // Poi generiamo i documenti
+      // Generiamo i documenti ma non li mostriamo più
       const response = await apiRequest("POST", "/api/generate-documents", data);
       const responseData = await response.json();
       
@@ -73,14 +70,13 @@ export default function FormSection() {
           variant: "default",
         });
         
-        setGeneratedDocuments(responseData.documents);
+        // Impostiamo formSubmitted a true per mostrare il messaggio di conferma
+        setFormSubmitted(true);
         
-        // Scroll to documents after a short delay
+        // Scroll to top after a short delay
         setTimeout(() => {
-          if (contractRef.current) {
-            contractRef.current.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 500);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 300);
       }
     } catch (error) {
       toast({
@@ -88,7 +84,7 @@ export default function FormSection() {
         description: "Si è verificato un errore durante l'elaborazione della richiesta.",
         variant: "destructive",
       });
-      setGeneratedDocuments(null);
+      setFormSubmitted(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -96,18 +92,7 @@ export default function FormSection() {
 
   const handleReset = () => {
     form.reset();
-    setGeneratedDocuments(null);
-  };
-
-  // Per scaricare i documenti come file di testo
-  const downloadAsTextFile = (text: string, filename: string) => {
-    const element = document.createElement('a');
-    const file = new Blob([text], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = filename;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    setFormSubmitted(false);
   };
 
   // Animation variants
@@ -162,7 +147,7 @@ export default function FormSection() {
       <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-accent opacity-5 translate-x-1/2 translate-y-1/2"></div>
       
       <div className="container mx-auto px-6 md:px-12">
-        {!generatedDocuments ? (
+        {!formSubmitted ? (
           <motion.div 
             className="max-w-2xl mx-auto"
             ref={refForm}
@@ -423,7 +408,7 @@ export default function FormSection() {
             animate="visible"
             variants={documentVariants}
           >
-            <div className="text-center mb-6">
+            <div className="text-center mb-6 max-w-3xl mx-auto bg-white p-10 rounded-xl shadow-lg">
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -442,43 +427,18 @@ export default function FormSection() {
                 </div>
               </motion.div>
               
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">Contratto Inviato alla Tua Email</h2>
-              <p className="text-gray-600 mb-4">Il tuo contratto è stato generato e inviato alla tua email con successo in pochi secondi grazie all'intelligenza artificiale!</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">Contratto Inviato alla Tua Email</h2>
+              <p className="text-gray-600 mb-6 text-lg">Il tuo contratto è stato generato con successo e inviato alla tua email in pochi secondi grazie all'intelligenza artificiale!</p>
+              <p className="text-gray-500 italic mb-8">Controlla la tua casella di posta elettronica per visualizzare il documento.</p>
               
-              <div className="flex justify-center space-x-4 mb-8">
+              <div className="flex justify-center space-x-4 mb-4">
                 <Button 
                   onClick={handleReset}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold"
+                  className="bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2"
                 >
                   Torna al Form
                 </Button>
               </div>
-            </div>
-            
-            <div className="max-w-3xl mx-auto">
-              {/* Contratto */}
-              <motion.div 
-                ref={contractRef}
-                className="bg-white rounded-xl shadow-lg overflow-hidden"
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="bg-primary text-white p-4">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-xl font-bold">Contratto di Consulenza</h3>
-                    <Button 
-                      onClick={() => downloadAsTextFile(generatedDocuments.contract, "contratto_ai.txt")}
-                      className="bg-white text-primary hover:bg-primary-50 text-sm px-3 py-1"
-                    >
-                      Scarica
-                    </Button>
-                  </div>
-                </div>
-                <div className="p-4 max-h-96 overflow-y-auto font-mono text-sm whitespace-pre-wrap bg-gray-50">
-                  {generatedDocuments.contract}
-                </div>
-              </motion.div>
             </div>
             
             <motion.div 
