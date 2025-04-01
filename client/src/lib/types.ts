@@ -3,6 +3,10 @@ import { z } from "zod";
 export const FormSchema = z.object({
   nome: z.string().min(1, "Il nome è obbligatorio"),
   cognome: z.string().min(1, "Il cognome è obbligatorio"),
+  email: z
+    .string()
+    .min(1, "L'email è obbligatoria")
+    .email("Inserisci un indirizzo email valido"),
   citta: z.string().min(1, "La città è obbligatoria"),
   cap: z
     .string()

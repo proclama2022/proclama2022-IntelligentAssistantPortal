@@ -36,6 +36,7 @@ export default function FormSection() {
     defaultValues: {
       nome: "",
       cognome: "",
+      email: "",
       citta: "",
       cap: "",
       indirizzo: "",
@@ -236,6 +237,29 @@ export default function FormSection() {
                                 id="cognome"
                                 className={`w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all ${
                                   form.formState.errors.cognome ? "border-red-500 focus:ring-red-200" : "border-gray-300"
+                                }`}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </motion.div>
+
+                    <motion.div variants={formItemVariants} className="md:col-span-2">
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel htmlFor="email" className="text-sm font-medium text-gray-700">Email *</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                id="email"
+                                type="email"
+                                className={`w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all ${
+                                  form.formState.errors.email ? "border-red-500 focus:ring-red-200" : "border-gray-300"
                                 }`}
                               />
                             </FormControl>
