@@ -5,7 +5,11 @@
   "builds": [
     {
       "src": "server/index.ts",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["server/**", "shared/**"],
+        "nodeVersion": "18.x"
+      }
     },
     {
       "src": "public/**",
@@ -23,14 +27,14 @@
     },
     {
       "src": "/(.*\\.[a-z0-9]+)$",
-      "dest": "/public/$1"
+      "dest": "/$1"
     },
     {
       "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "server/index.ts"
+      "dest": "index.html"
     }
   ]
 }
