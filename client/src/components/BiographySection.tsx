@@ -50,11 +50,12 @@ export default function BiographySection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <motion.div variants={itemVariants} className="relative">
-              <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden shadow-lg">
-                {/* Placeholder per l'immagine che aggiungerai in seguito */}
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <span className="text-sm">Immagine del Relatore</span>
-                </div>
+              <div className="aspect-square rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src="/images/rosario-emmi.jpg" 
+                  alt="Rosario Emmi - Dottore Commercialista" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <motion.div 

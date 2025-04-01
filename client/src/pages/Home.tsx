@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import TimelineSection from "@/components/TimelineSection";
 import BiographySection from "@/components/BiographySection";
+import HobbySection from "@/components/HobbySection";
 import FormSection from "@/components/FormSection";
 import Footer from "@/components/Footer";
 
@@ -40,6 +41,7 @@ export default function Home() {
         <HeroSection />
         <TimelineSection />
         <BiographySection />
+        <HobbySection />
         <FormSection />
       </main>
       <Footer />

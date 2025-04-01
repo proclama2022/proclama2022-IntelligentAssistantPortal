@@ -30,8 +30,11 @@ export default function Header() {
           <Link href="/">
             <a className="text-foreground hover:text-primary transition-colors font-medium">Home</a>
           </Link>
-          <Link href="#contact">
-            <a className="text-foreground hover:text-primary transition-colors font-medium">Contatti</a>
+          <Link href="#biografia">
+            <a className="text-foreground hover:text-primary transition-colors font-medium">Chi Sono</a>
+          </Link>
+          <Link href="#passioni">
+            <a className="text-foreground hover:text-primary transition-colors font-medium">Passioni</a>
           </Link>
           <Link href="#form">
             <Button className="bg-accent hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition-all transform hover:scale-105">
@@ -47,8 +50,11 @@ export default function Header() {
           <Link href="/">
             <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Home</a>
           </Link>
-          <Link href="#contact">
-            <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Contatti</a>
+          <Link href="#biografia">
+            <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Chi Sono</a>
+          </Link>
+          <Link href="#passioni">
+            <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Passioni</a>
           </Link>
           <Link href="#form">
             <a className="bg-accent hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg text-center transition-all">
