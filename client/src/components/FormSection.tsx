@@ -160,10 +160,10 @@ export default function FormSection() {
               variants={formHeaderVariants}
             >
               <h2 className="text-2xl md:text-3xl font-bold font-montserrat text-primary mb-3">
-                Il Tuo Contratto Generato Con AI in 90 Minuti
+                Sito Web e Automazione Creati in 90 Minuti con AI
               </h2>
               <p className="text-foreground max-w-lg mx-auto">
-                Dimostra ai tuoi clienti il potere dell'IA compilando il form e ricevendo un contratto personalizzato generato con AI
+                Questo intero sito è stato creato in soli 90 minuti con l'AI. Compila il form per generare un contratto personalizzato e vedere in azione l'automazione che puoi ottenere.
               </p>
             </motion.div>
             

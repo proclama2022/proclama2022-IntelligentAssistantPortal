@@ -83,28 +83,34 @@ export default function HobbySection() {
               <div className="grid grid-cols-2 gap-4">
                 {/* Prima immagine principale - Martha */}
                 <div className="col-span-2">
-                  <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-md">
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <span className="text-sm">Foto con Martha</span>
-                    </div>
+                  <div className="aspect-video rounded-lg overflow-hidden shadow-md">
+                    <img 
+                      src="/images/tartufo-1.jpg" 
+                      alt="Rosario Emmi e la ricerca del tartufo" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
                 
                 {/* Seconda immagine */}
                 <div className="col-span-1">
-                  <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md">
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <span className="text-sm">Foto 2</span>
-                    </div>
+                  <div className="aspect-square rounded-lg overflow-hidden shadow-md">
+                    <img 
+                      src="/images/tartufo-2.jpg" 
+                      alt="Rosario Emmi con il suo cane lagotto" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
                 
                 {/* Terza immagine */}
                 <div className="col-span-1">
-                  <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md">
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <span className="text-sm">Foto 3</span>
-                    </div>
+                  <div className="aspect-square rounded-lg overflow-hidden shadow-md">
+                    <img 
+                      src="/images/tartufo-3.jpg" 
+                      alt="Rosario Emmi alla ricerca del tartufo" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>

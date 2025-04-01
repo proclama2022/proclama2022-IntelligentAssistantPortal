@@ -27,40 +27,26 @@ export default function Header() {
         </div>
         
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/">
-            <a className="text-foreground hover:text-primary transition-colors font-medium">Home</a>
-          </Link>
-          <Link href="#biografia">
-            <a className="text-foreground hover:text-primary transition-colors font-medium">Chi Sono</a>
-          </Link>
-          <Link href="#passioni">
-            <a className="text-foreground hover:text-primary transition-colors font-medium">Passioni</a>
-          </Link>
-          <Link href="#form">
+          <a href="/" className="text-foreground hover:text-primary transition-colors font-medium">Home</a>
+          <a href="#biografia" className="text-foreground hover:text-primary transition-colors font-medium">Chi Sono</a>
+          <a href="#passioni" className="text-foreground hover:text-primary transition-colors font-medium">Passioni</a>
+          <a href="#form">
             <Button className="bg-accent hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg transition-all transform hover:scale-105">
               Iscriviti Ora
             </Button>
-          </Link>
+          </a>
         </nav>
       </div>
       
       {/* Mobile menu */}
       <div className={`${isMobileMenuOpen ? "" : "hidden"} md:hidden bg-white w-full border-t`}>
         <div className="container mx-auto px-6 md:px-12 py-3 flex flex-col space-y-3">
-          <Link href="/">
-            <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Home</a>
-          </Link>
-          <Link href="#biografia">
-            <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Chi Sono</a>
-          </Link>
-          <Link href="#passioni">
-            <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Passioni</a>
-          </Link>
-          <Link href="#form">
-            <a className="bg-accent hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg text-center transition-all">
-              Iscriviti Ora
-            </a>
-          </Link>
+          <a href="/" className="text-foreground hover:text-primary transition-colors font-medium py-2">Home</a>
+          <a href="#biografia" className="text-foreground hover:text-primary transition-colors font-medium py-2">Chi Sono</a>
+          <a href="#passioni" className="text-foreground hover:text-primary transition-colors font-medium py-2">Passioni</a>
+          <a href="#form" className="bg-accent hover:bg-opacity-90 text-white font-semibold py-2 px-4 rounded-lg text-center transition-all">
+            Iscriviti Ora
+          </a>
         </div>
       </div>
     </header>
