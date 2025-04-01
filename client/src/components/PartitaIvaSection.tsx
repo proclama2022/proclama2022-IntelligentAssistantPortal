@@ -43,13 +43,13 @@ export default function PartitaIvaSection() {
               <div className="md:col-span-3 p-8 md:p-12">
                 <motion.div variants={itemVariants}>
                   <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
-                    Ottimizza la Gestione Fiscale della Tua Azienda
+                    Reingegnerizzazione dei Processi con Intelligenza Artificiale
                   </h2>
                 </motion.div>
                 
                 <motion.div variants={itemVariants}>
                   <p className="text-foreground/80 mb-6">
-                    Scopri come l'intelligenza artificiale può aiutarti nella gestione fiscale, amministrativa e strategica della tua azienda. Visita <span className="font-semibold">partitaiva.ai</span> per consulenze professionali e soluzioni innovative.
+                    Su <span className="font-semibold">partitaiva.ai</span>, aiutiamo aziende e studi professionali a ripensare e ottimizzare i loro processi attraverso l'intelligenza artificiale. L'analisi delle attività esistenti permette di identificare inefficienze e proporre soluzioni innovative basate su agenti intelligenti, chatbot e automazione avanzata.
                   </p>
                 </motion.div>
                 
@@ -57,15 +57,15 @@ export default function PartitaIvaSection() {
                   <ul className="space-y-2 mb-8">
                     <li className="flex items-start">
                       <span className="text-accent mr-2">✓</span>
-                      <span>Consulenze fiscali personalizzate</span>
+                      <span>Analisi dei processi aziendali</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-accent mr-2">✓</span>
-                      <span>Ottimizzazione tributaria con AI</span>
+                      <span>Soluzioni AI personalizzate e chatbot</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-accent mr-2">✓</span>
-                      <span>Strategie per startup innovative</span>
+                      <span>Reingegnerizzazione completa dei processi</span>
                     </li>
                   </ul>
                 </motion.div>
@@ -75,7 +75,7 @@ export default function PartitaIvaSection() {
                     className="bg-accent hover:bg-opacity-90 text-white py-2 px-6 rounded-lg"
                     onClick={() => window.open('https://partitaiva.ai', '_blank')}
                   >
-                    Visita partitaiva.ai
+                    Scopri partitaiva.ai
                   </Button>
                 </motion.div>
               </div>
@@ -85,13 +85,13 @@ export default function PartitaIvaSection() {
                   variants={itemVariants}
                   className="text-center text-white"
                 >
-                  <h3 className="text-xl font-bold mb-4">Perché partitaiva.ai?</h3>
+                  <h3 className="text-xl font-bold mb-4">Benefici dell'approccio AI</h3>
                   <p className="text-white/90 mb-6">
-                    Una piattaforma creata da commercialisti per commercialisti, che unisce l'esperienza professionale con le più moderne tecnologie di intelligenza artificiale.
+                    La trasformazione dei processi attraverso l'AI porta efficienza operativa, riducendo tempi e costi. Le soluzioni sono scalabili ed evolvono con le esigenze aziendali, mentre l'esperienza di clienti e collaboratori migliora grazie a interazioni più intuitive e immediate.
                   </p>
-                  <div className="inline-block border-2 border-white/30 rounded-lg p-4 mt-4">
+                  <div className="inline-block border-2 border-white/30 rounded-lg p-4 mt-2">
                     <p className="text-sm font-light italic">
-                      "L'AI non sostituisce il commercialista, ma i commercialisti che usano l'AI sostituiranno quelli che non la usano."
+                      "Trasformiamo la complessità in opportunità, costruendo un futuro più digitale ed efficiente."
                     </p>
                   </div>
                 </motion.div>
