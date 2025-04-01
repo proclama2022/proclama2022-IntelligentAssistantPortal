@@ -19,7 +19,7 @@ export default function TimelineSection() {
       <div className="absolute -left-32 top-0 w-64 h-64 rounded-full bg-primary opacity-5"></div>
       <div className="absolute -right-32 bottom-0 w-64 h-64 rounded-full bg-accent opacity-5"></div>
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 md:px-12">
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}

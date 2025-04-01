@@ -86,69 +86,6 @@ ${data.nome} ${data.cognome}                     Studio di Consulenza AI
 `;
 }
 
-// Funzione per generare la fattura di cortesia
-function generateCourtesyInvoice(data: any): string {
-  const invoiceDate = new Date().toLocaleDateString('it-IT', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
-  
-  const invoiceNumber = `AI-${Math.floor(Math.random() * 10000)}-${new Date().getFullYear()}`;
-
-  return `
-FATTURA DI CORTESIA
-Documento non valido ai fini fiscali
-
-Fattura n. ${invoiceNumber}
-Data: ${invoiceDate}
-
-EMITTENTE:
-Studio di Consulenza AI
-Via delle Tecnologie, 123
-20129 Milano
-P.IVA: 12345678901
-Email: contatti@consulenzaai.it
-
-DESTINATARIO:
-${data.nome} ${data.cognome}
-${data.indirizzo}
-${data.cap} ${data.citta}
-P.IVA: ${data.partitaIva}
-C.F.: ${data.codiceFiscale}
-
-DETTAGLIO SERVIZI:
---------------------------------------------------------
-| QTÀ |         DESCRIZIONE         | PREZZO  | TOTALE |
---------------------------------------------------------
-|  1  | Consulenza iniziale AI      | € 200,00| € 200,00|
-|     | Analisi predittiva          |         |         |
---------------------------------------------------------
-|  1  | Setup piattaforma AI        | € 150,00| € 150,00|
-|     | per gestione documentale    |         |         |
---------------------------------------------------------
-|  1  | Formazione sull'utilizzo    | € 100,00| € 100,00|
-|     | degli strumenti AI          |         |         |
---------------------------------------------------------
-
-Imponibile:                         € 450,00
-IVA 22%:                            € 99,00
-TOTALE FATTURA:                     € 549,00
-
-Modalità di pagamento: Bonifico Bancario
-IBAN: IT00A0000000000000000000000
-Intestato a: Studio di Consulenza AI
-Causale: Fattura n. ${invoiceNumber}
-
-Note:
-- Per qualsiasi informazione contattare: supporto@consulenzaai.it
-- Contratto generato automaticamente con intelligenza artificiale
-- Questo sito e le sue funzionalità sono stati sviluppati in soli 90 minuti con AI
-
-Grazie per aver scelto i nostri servizi innovativi basati su AI!
-`;
-}
-
 export async function registerRoutes(app: Express): Promise<Server> {
   // Generate documents endpoint
   app.post("/api/generate-documents", async (req: Request, res: Response) => {

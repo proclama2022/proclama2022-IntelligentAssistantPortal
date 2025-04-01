@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="fixed w-full bg-white shadow-md z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="container mx-auto px-6 md:px-12 py-3 flex justify-between items-center">
         <div className="logo">
           <h1 className="text-xl font-bold font-montserrat text-primary">AI Per Commercialisti</h1>
         </div>
@@ -43,7 +43,7 @@ export default function Header() {
       
       {/* Mobile menu */}
       <div className={`${isMobileMenuOpen ? "" : "hidden"} md:hidden bg-white w-full border-t`}>
-        <div className="container mx-auto px-4 py-3 flex flex-col space-y-3">
+        <div className="container mx-auto px-6 md:px-12 py-3 flex flex-col space-y-3">
           <Link href="/">
             <a className="text-foreground hover:text-primary transition-colors font-medium py-2">Home</a>
           </Link>
