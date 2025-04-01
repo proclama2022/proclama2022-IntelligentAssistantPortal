@@ -1,0 +1,106 @@
+Istruzioni Complete per Replit Agent: Landing Page "Dalla Teoria alla Pratica"
+OBIETTIVO DEL PROGETTO
+Crea una landing page moderna, professionale e accattivante per un corso di formazione sull'AI per commercialisti con il titolo "Dalla Teoria alla Pratica: L'AI che Risolve Problemi Concreti del Commercialista". La pagina deve includere un form di raccolta dati per la generazione automatica di contratti e fatture di cortesia.
+
+STRUTTURA DELLA LANDING PAGE
+1. Header (top-fixed)
+Logo placeholder (testo stilizzato "AI Per Commercialisti")
+Navigazione minima (Home, Contatti)
+CTA button "Iscriviti Ora" (scroll al form)
+2. Hero Section
+Titolo principale: "Dalla Teoria alla Pratica: L'AI che Risolve Problemi Concreti del Commercialista"
+Sottotitolo: "Trasforma il tuo studio professionale con strumenti di intelligenza artificiale concreti e immediati"
+CTA principale: "Inizia Ora" (pulsante grande che porta al form)
+Immagine di background: professionista con elementi grafici di AI sovrapposti
+3. Sezione "90 Minuti di AI: Teoria in Pratica"
+Timeline orizzontale con 3 step in 90 minuti totali:
+Fase 1 (30 min): Ideazione con AI
+Fase 2 (30 min): Sviluppo con Replit Agents
+Fase 3 (30 min): Automazione con Make.com
+Confronto visivo tra metodo tradizionale (2-3 settimane) e metodo AI (90 minuti)
+Badge/timbro "Realizzato in 90 Minuti"
+4. Form di Raccolta Dati
+Titolo: "Genera i tuoi documenti professionali"
+Sottotitolo: "Compila i campi per creare automaticamente contratto e fattura di cortesia"
+Campi del form:
+Nome (obbligatorio)
+Cognome (obbligatorio)
+Città (obbligatorio)
+CAP (obbligatorio)
+Indirizzo (obbligatorio)
+Partita IVA (obbligatorio)
+Codice Fiscale (obbligatorio)
+Pulsante di invio: "GENERA DOCUMENTI"
+Nota privacy sotto il form
+5. Footer
+Copyright
+Link privacy policy
+Contatti essenziali (email)
+SPECIFICHE TECNICHE
+HTML Structure
+HTML5 semantico
+Meta tags SEO-friendly
+Struttura responsiva
+CSS Requirements
+Design system moderno con variabili CSS
+Palette colori:
+Primario: #1A4D8C (blu professionale)
+Accent: #00A67E (verde smeraldo) per CTA e highlight
+Background: Bianco a grigio chiarissimo (#f8f9fa)
+Testo: #333333 (grigio scuro)
+Typography:
+Font principali: 'Montserrat' per titoli, 'Inter' per testo
+Scala tipografica:
+H1: 42px
+H2: 32px
+H3: 24px
+Body: 16px
+Small: 14px
+Box shadows leggere per elementi in rilievo
+Bordi arrotondati (8px)
+Animazioni e transizioni fluide
+Hover states ben definiti
+JavaScript Functionality
+Validazione form lato client
+Smooth scrolling per i link interni
+Animazioni al scroll per elementi della timeline
+Feedback visivo durante compilazione form
+Simulazione di invio form (alert di successo)
+Responsive Design
+Approccio mobile-first
+Breakpoints:
+Mobile: 320px - 767px
+Tablet: 768px - 1023px
+Desktop: 1024px+
+Layout riorganizzato per mobile:
+Menu hamburger
+Timeline verticale invece che orizzontale
+Form a colonna singola
+ELEMENTI VISIVI DISTINTIVI
+Timeline 90 Minuti
+Rappresentazione visiva dell'orologio/cronometro
+Segmenti colorati: #4A90E2 (Ideazione), #50E3C2 (Sviluppo), #B06ADB (Automazione)
+Icone minimaliste per ogni fase
+Indicatori di tempo: "0:30", "1:00", "1:30"
+Form Design
+Card con ombra leggera
+Input con effetto "focus" che cambia colore del bordo
+Validazione real-time con feedback visivo
+Pulsante CTA grande e visibile con effetto hover
+Animazioni
+Entrance animations per elementi principali
+Scroll-triggered animations per la timeline
+Microinterazioni sui campi del form
+Effetto "pulsante" sul CTA principale
+NOTE IMPORTANTI
+Evitare l'uso di librerie pesanti, preferire soluzioni leggere
+Ottimizzare per velocità di caricamento
+Form funzionante che mostra un messaggio di successo (simulazione)
+Assicurarsi che tutti i campi obbligatori abbiano validazione appropriata
+Includere commenti nel codice per facilitare future modifiche
+OUTPUT RICHIESTO
+File HTML, CSS e JS completi e ottimizzati
+Design responsive e testato su diverse dimensioni di schermo
+Form funzionante con validazione client-side
+Struttura semanticamente corretta
+Questa landing page deve trasmettere innovazione, efficienza e professionalità, evidenziando come l'AI possa trasformare radicalmente i processi di lavoro dei commercialisti.
