@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
   "builds": [
     {
       "src": "server/index.ts",
@@ -17,12 +19,14 @@
     },
     {
       "src": "/images/(.*)",
-      "dest": "server/static/images/$1"
+      "dest": "/images/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "public/$1",
-      "continue": true
+      "src": "/(.*\\.[a-z0-9]+)$",
+      "dest": "/public/$1"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",

@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import { registerRoutes } from "./routes.js";
+import { setupVite, serveStatic, log } from "./vite.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -65,26 +65,31 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   res.status(status).json({ message });
 });
 
-// Setup Vite only in development
-if (process.env.NODE_ENV === "development") {
-  const server = await setupVite(app);
-  const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-  server.listen({
-    port,
+// For Vercel deployment, we need to handle static files in a slightly different way
+if (process.env.VERCEL) {
+  log("Running on Vercel");
+  // Let Vercel handle static files via vercel.json configuration
+} else if (process.env.NODE_ENV === "development") {
+  const server = app.listen({
+    port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
-    log(`serving on port ${port}`);
+    const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+    log(`Development server running on port ${port}`);
   });
-} else {
-  // In production, serve static files and handle client-side routing
-  serveStatic(app);
   
-  // Start the server in production
+  // Pass both app and server to setupVite
+  await setupVite(app, server);
+} else {
+  // In production (non-Vercel), serve static files and handle client-side routing
   const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
-  app.listen(port, "0.0.0.0", () => {
+  const server = app.listen(port, "0.0.0.0", () => {
     log(`Production server running on port ${port}`);
   });
+  
+  // Serve static files
+  serveStatic(app);
 }
 
 // Export the Express app for Vercel
