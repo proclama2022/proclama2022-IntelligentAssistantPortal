@@ -48,13 +48,27 @@ export default function FormSection() {
     setIsSubmitting(true);
     
     try {
+      // Prima facciamo la richiesta al webhook esterno
+      const webhookResponse = await fetch('https://hook.eu1.make.com/a68lwcfom3ue7s8lgh3ulwob9owvmmaz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      if (!webhookResponse.ok) {
+        throw new Error('Errore nell\'invio dei dati al webhook');
+      }
+      
+      // Poi generiamo i documenti
       const response = await apiRequest("POST", "/api/generate-documents", data);
       const responseData = await response.json();
       
       if (response.ok && responseData.documents) {
         toast({
           title: "Documenti generati con successo!",
-          description: "I tuoi documenti sono pronti.",
+          description: "I tuoi documenti sono pronti e i dati sono stati inviati.",
           variant: "default",
         });
         
@@ -70,7 +84,7 @@ export default function FormSection() {
     } catch (error) {
       toast({
         title: "Errore",
-        description: "Si è verificato un errore durante la generazione dei documenti.",
+        description: "Si è verificato un errore durante l'elaborazione della richiesta.",
         variant: "destructive",
       });
       setGeneratedDocuments(null);

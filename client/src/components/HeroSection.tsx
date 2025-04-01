@@ -88,11 +88,11 @@ export default function HeroSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link href="#form">
+            <a href="#form">
               <Button className="bg-accent hover:bg-opacity-90 text-white font-bold py-3 px-8 text-lg rounded-lg shadow-lg transition-all">
                 Inizia Ora
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
       </div>
