@@ -67,8 +67,8 @@ export default function FormSection() {
       
       if (response.ok && responseData.documents) {
         toast({
-          title: "Documenti generati con successo!",
-          description: "I tuoi documenti sono pronti e i dati sono stati inviati.",
+          title: "Contratto inviato alla tua email!",
+          description: `Grazie ${data.nome}! Il contratto è stato generato e inviato alla tua email con successo.`,
           variant: "default",
         });
         
@@ -418,8 +418,8 @@ export default function FormSection() {
                 </div>
               </motion.div>
               
-              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">Contratto Generato con AI</h2>
-              <p className="text-gray-600 mb-4">Il tuo contratto è stato generato con successo in pochi secondi grazie all'intelligenza artificiale!</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2">Contratto Inviato alla Tua Email</h2>
+              <p className="text-gray-600 mb-4">Il tuo contratto è stato generato e inviato alla tua email con successo in pochi secondi grazie all'intelligenza artificiale!</p>
               
               <div className="flex justify-center space-x-4 mb-8">
                 <Button 
