@@ -1,73 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
 
 export default function ChatbotSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-  
-  useEffect(() => {
-    // Rimuove qualsiasi script o stile Dify esistente
-    const removeExistingDify = () => {
-      const existingScript = document.getElementById('2SMbssbWJ4595DdF');
-      if (existingScript) {
-        existingScript.remove();
-      }
-      
-      const existingConfig = document.getElementById('dify-config');
-      if (existingConfig) {
-        existingConfig.remove();
-      }
-      
-      const existingStyle = document.getElementById('dify-style');
-      if (existingStyle) {
-        existingStyle.remove();
-      }
-    };
-    
-    // Rimuove eventuali script esistenti
-    removeExistingDify();
-    
-    // Aggiunge la configurazione
-    const configScript = document.createElement('script');
-    configScript.id = 'dify-config';
-    configScript.text = `
-      window.difyChatbotConfig = {
-        token: '2SMbssbWJ4595DdF',
-        baseUrl: 'https://dify-e9toe-u35360.vm.elestio.app'
-      }
-    `;
-    document.head.appendChild(configScript);
-    
-    // Aggiunge lo stile
-    const styleElement = document.createElement('style');
-    styleElement.id = 'dify-style';
-    styleElement.innerHTML = `
-      #dify-chatbot-bubble-button {
-        background-color: #1C64F2 !important;
-      }
-      #dify-chatbot-bubble-window {
-        width: 24rem !important;
-        height: 40rem !important;
-      }
-    `;
-    document.head.appendChild(styleElement);
-    
-    // Aggiunge lo script
-    const script = document.createElement('script');
-    script.src = 'https://dify-e9toe-u35360.vm.elestio.app/embed.min.js';
-    script.id = '2SMbssbWJ4595DdF';
-    script.defer = true;
-    document.body.appendChild(script);
-    
-    // Cleanup
-    return () => {
-      removeExistingDify();
-    };
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
