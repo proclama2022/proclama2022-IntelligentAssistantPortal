@@ -1,7 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertDocumentSchema } from "@shared/schema";
+import { storage } from "./storage.js";
+import { insertDocumentSchema } from "../shared/schema.js";
 
 // Funzione per generare il contratto usando i dati del cliente
 function generateAIContract(data: any): string {
@@ -90,6 +90,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Generate documents endpoint
   app.post("/api/generate-documents", async (req: Request, res: Response) => {
     try {
+      console.log('Received request body:', req.body);
       // Validate request body against schema
       const result = insertDocumentSchema.safeParse({
         ...req.body,
@@ -97,28 +98,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
       
       if (!result.success) {
-        return res.status(400).json({ 
-          message: "Validation error", 
-          errors: result.error.format() 
+        console.error('Validation error:', result.error);
+        return res.status(400).json({
+          error: 'Invalid request data',
+          details: result.error.errors
         });
       }
+
+      // Log successful validation
+      console.log('Validation successful, generating contract...');
       
       // Generazione del contratto con AI
-      const contract = generateAIContract(req.body);
-      
-      // Save document data
-      const document = await storage.createDocument(result.data);
-      
-      // In una implementazione reale, invieremmo questo documento via email
-      // o offriremmo un link per il download
-      
-      res.status(200).json({ 
-        message: "Contratto generato con successo con AI",
-        documentId: document.id,
-        documents: {
-          contract
-        }
-      });
+      let contract;
+      try {
+        contract = generateAIContract(req.body);
+        console.log('Contract generated successfully');
+      } catch (contractError) {
+        console.error('Error generating contract:', contractError);
+        return res.status(500).json({
+          error: 'Contract generation error',
+          message: 'Error generating the contract document'
+        });
+      }
+      [{
+        "resource": "/Users/rosarioemmi/Documents/Siti internet/IntelligentAssistantPortal/server/index.ts",
+        "owner": "typescript",
+        "code": "1378",
+        "severity": 8,
+        "message": "Top-level 'await' expressions are only allowed when the 'module' option is set to 'es2022', 'esnext', 'system', 'node16', 'nodenext', or 'preserve', and the 'target' option is set to 'es2017' or higher.",
+        "source": "ts",
+        "startLineNumber": 60,
+        "startColumn": 1,
+        "endLineNumber": 60,
+        "endColumn": 6,
+        "extensionID": "vscode.typescript-language-features"
+      }]      
+      try {
+        // Save document data
+        const document = await storage.createDocument(result.data);
+        
+        // In una implementazione reale, invieremmo questo documento via email
+        // o offriremmo un link per il download
+        
+        res.status(200).json({ 
+          message: "Contratto generato con successo con AI",
+          documentId: document.id,
+          documents: {
+            contract
+          }
+        });
+      } catch (storageError) {
+        console.error('Error saving document to storage:', storageError);
+        res.status(500).json({ 
+          error: 'Database error',
+          message: 'Error saving document to database'
+        });
+      }
     } catch (error) {
       console.error("Error generating documents:", error);
       res.status(500).json({ message: "Errore durante la generazione dei documenti" });

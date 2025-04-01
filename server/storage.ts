@@ -1,4 +1,4 @@
-import { users, documents, type User, type InsertUser, type Document, type InsertDocument } from "@shared/schema";
+import { users, documents, type User, type InsertUser, type Document, type InsertDocument } from "../shared/schema.js";
 
 // modify the interface with any CRUD methods
 // you might need
