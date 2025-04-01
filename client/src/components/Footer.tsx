@@ -12,8 +12,8 @@ export default function Footer() {
             <h3 className="text-lg font-semibold font-montserrat mb-3">Contatti</h3>
             <p className="flex items-center">
               <i className="fas fa-envelope mr-2"></i>
-              <a href="mailto:info@aipercommercialisti.it" className="hover:text-accent transition-colors">
-                info@aipercommercialisti.it
+              <a href="mailto:rosario.emmi@proclama.co" className="hover:text-accent transition-colors">
+                rosario.emmi@proclama.co
               </a>
             </p>
           </div>

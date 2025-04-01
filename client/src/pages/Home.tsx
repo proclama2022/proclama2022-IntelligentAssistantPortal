@@ -5,6 +5,7 @@ import TimelineSection from "@/components/TimelineSection";
 import BiographySection from "@/components/BiographySection";
 import HobbySection from "@/components/HobbySection";
 import FormSection from "@/components/FormSection";
+import PartitaIvaSection from "@/components/PartitaIvaSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -43,6 +44,7 @@ export default function Home() {
         <BiographySection />
         <HobbySection />
         <FormSection />
+        <PartitaIvaSection />
       </main>
       <Footer />
     </div>
